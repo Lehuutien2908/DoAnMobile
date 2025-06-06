@@ -4,6 +4,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- Thanh công cụ có nút Back và tiêu đề -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            android:contentDescription="Quay lại"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Thanh toán"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC" />
+
     <!-- Nội dung cuộn -->
     <ScrollView
         android:layout_width="match_parent"
@@ -15,34 +47,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <!-- Thanh công cụ có nút Back và tiêu đề -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="?attr/colorPrimary"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp">
-
-                <ImageButton
-                    android:id="@+id/btnBack"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="?attr/colorPrimary"
-                    android:contentDescription="Quay lại"
-                    android:src="@drawable/ic_back" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Thanh toán"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
 
             <!-- Ảnh phim -->
             <ImageView
@@ -57,6 +61,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text="Thông tin đơn hàng:"
                 android:textStyle="bold" />
 
@@ -64,38 +69,82 @@
                 android:id="@+id/txtMovieName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text="Phim: " />
 
             <TextView
                 android:id="@+id/txtShowTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text="Suất: " />
 
             <TextView
                 android:id="@+id/txtCinema"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text="Rạp: " />
 
             <TextView
                 android:id="@+id/txtSeats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
                 android:text="Ghế: " />
 
-            <TextView
-                android:id="@+id/txtTotalPrice"
-                android:layout_width="wrap_content"
+            <!-- Thông tin bắp nước -->
+            <LinearLayout
+                android:id="@+id/layoutSnackInfo"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:text="Tổng tiền: "
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Thông tin bắp nước:"
+                    android:textStyle="bold" />
+
+                <!-- Dòng combo bắp nước và giá combo -->
+                <!-- Container để add danh sách combo động -->
+                <LinearLayout
+                    android:id="@+id/layoutComboList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    android:background="#F9F9F9" />
+
+                <!-- Tổng giá -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tổng: "
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtTotalSnackPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0đ"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
             <!-- Phương thức thanh toán -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text="Chọn phương thức thanh toán:"
                 android:textStyle="bold" />
 
@@ -103,12 +152,6 @@
                 android:id="@+id/radioPaymentMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/radioMomo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ví Momo" />
 
                 <RadioButton
                     android:id="@+id/radioZaloPay"
@@ -120,12 +163,34 @@
                     android:id="@+id/radioCash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Thanh toán tại quầy" />
+                    android:text="Ví Momo" />
             </RadioGroup>
         </LinearLayout>
     </ScrollView>
 
-    <!-- Nút xác nhận thanh toán cố định -->
+    <!--    Tổng tiền-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tổng tiền:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtTotalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0đ"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Nút xác nhận thanh toán-->
     <Button
         android:id="@+id/btnConfirmPayment"
         android:layout_width="match_parent"
