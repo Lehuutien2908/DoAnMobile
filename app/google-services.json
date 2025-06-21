@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "165115123598",
+    "project_id": "appdatvexemphim-cdf75",
+    "storage_bucket": "appdatvexemphim-cdf75.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165115123598:android:65151a529c6257d6bfb6df",
+        "android_client_info": {
+          "package_name": "com.example.doanmobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-V4ywtd8V63BDXgpq_rX8G4bOq9xLLsw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -34,33 +34,8 @@
                     android:id="@+id/bannerContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal" />
 
-                    <ImageView
-                        android:layout_width="350dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="50dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/fim" />
-
-                    <ImageView
-                        android:layout_width="300dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginEnd="50dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/fim" />
-
-                    <ImageView
-                        android:layout_width="300dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginEnd="50dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/fim" />
-
-                </LinearLayout>
             </HorizontalScrollView>
 
             <LinearLayout
@@ -93,200 +68,32 @@
             </LinearLayout>
 
             <!-- Danh sách phim 2 cột -->
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMovies"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <!-- Hàng 1 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="8dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="8dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="240dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/fim" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Anvenger4"
-                            android:textSize="16sp"
-                            android:paddingTop="4dp"
-                            android:maxLines="1"
-                            android:ellipsize="end" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="240dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/fim" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Anvenger4"
-                            android:textSize="16sp"
-                            android:paddingTop="4dp"
-                            android:maxLines="1"
-                            android:ellipsize="end" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Hàng 2 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="8dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="8dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="240dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/fim" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Anvenger4"
-                            android:textSize="16sp"
-                            android:paddingTop="4dp"
-                            android:maxLines="1"
-                            android:ellipsize="end" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="240dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/fim" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Anvenger4"
-                            android:textSize="16sp"
-                            android:paddingTop="4dp"
-                            android:maxLines="1"
-                            android:ellipsize="end" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Hàng 3 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="8dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="8dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="240dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/fim" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Anvenger4"
-                            android:textSize="16sp"
-                            android:paddingTop="4dp"
-                            android:maxLines="1"
-                            android:ellipsize="end" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="240dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/fim" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Anvenger4"
-                            android:textSize="16sp"
-                            android:paddingTop="4dp"
-                            android:maxLines="1"
-                            android:ellipsize="end" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- Nút xem tiếp -->
-            <LinearLayout
+                android:layout_height="1080dp"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_movie" />
+            <TextView
+                android:id="@+id/btnXemTiep"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="48dp"
+                android:layout_above="@id/bottom_nav"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/border_button"
+                android:gravity="center"
+                android:text="Xem tiếp >"
+                android:textColor="#FF3F33"
+                android:textSize="16sp"
+                android:clickable="true"
+                android:focusable="true" />
 
-                <TextView
-                    android:id="@+id/btnXemTiep"
-                    android:layout_width="350dp"
-                    android:layout_height="40dp"
-                    android:text="Xem tiếp >"
-                    android:textColor="#FF3F33"
-                    android:textSize="16sp"
-                    android:gravity="center"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/border_button"
-                    android:clickable="true"
-                    android:focusable="true" />
-            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
+
 
 <!--     BottomNavigationView sát đáy-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
