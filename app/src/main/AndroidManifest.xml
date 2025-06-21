@@ -12,15 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAnMobile"
         tools:targetApi="31">
+
+        <!-- Màn hình xác nhận đặt vé -->
+        <activity android:name=".activity.BookingConfirmActivity" />
+
+        <!-- Màn hình thanh toán -->
+        <activity android:name=".activity.PaymentActivity" />
+
+        <!-- Màn hình chính -->
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
