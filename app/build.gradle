@@ -39,5 +39,6 @@ dependencies {
     androidTestImplementation libs.espresso.core
 }
 dependencies {
+    implementation libs.play.services.maps
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 }
