@@ -18,8 +18,8 @@ public class ScheduleManagementActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedules);
-
+        setContentView(R.layout.activity_schedules_admin);
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         listSchedules = findViewById(R.id.listSchedules);
 
         // Dữ liệu lịch chiếu mẫu

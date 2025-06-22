@@ -20,6 +20,7 @@ import com.example.doanmobile.activity.EditMovieActivity;
 import com.example.doanmobile.model.Movie;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class MovieAdminAdapter extends RecyclerView.Adapter<MovieAdminAdapter.MovieViewHolder> {

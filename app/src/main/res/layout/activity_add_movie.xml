@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Header: nút quay lại + tiêu đề -->
+        <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chỉnh sửa phim"
+                android:text="Thêm phim mới"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginStart="12dp"
@@ -37,14 +37,14 @@
 
         <!-- Tên phim -->
         <EditText
-            android:id="@+id/edtName"
+            android:id="@+id/add_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tên phim" />
 
         <!-- Thời lượng -->
         <EditText
-            android:id="@+id/edtDuration"
+            android:id="@+id/add_duration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Thời lượng (phút)"
@@ -52,21 +52,21 @@
 
         <!-- Thể loại -->
         <EditText
-            android:id="@+id/edtGenre"
+            android:id="@+id/add_genre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Thể loại" />
 
         <!-- Độ tuổi -->
         <EditText
-            android:id="@+id/edtAge"
+            android:id="@+id/add_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Độ tuổi" />
 
         <!-- Mô tả -->
         <EditText
-            android:id="@+id/edtDescription"
+            android:id="@+id/add_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mô tả"
@@ -76,14 +76,14 @@
 
         <!-- Link ảnh banner -->
         <EditText
-            android:id="@+id/edtImgBanner"
+            android:id="@+id/add_img_banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Link ảnh banner" />
 
         <!-- Preview ảnh banner -->
         <ImageView
-            android:id="@+id/imgBannerPreview"
+            android:id="@+id/img_banner_preview"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:layout_marginTop="8dp"
@@ -92,14 +92,14 @@
 
         <!-- Link ảnh poster -->
         <EditText
-            android:id="@+id/edtImgMovie"
+            android:id="@+id/add_img_poster"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Link ảnh poster" />
 
         <!-- Preview ảnh poster -->
         <ImageView
-            android:id="@+id/imgMoviePreview"
+            android:id="@+id/img_poster_preview"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:layout_marginTop="8dp"
@@ -108,17 +108,17 @@
 
         <!-- Trạng thái -->
         <EditText
-            android:id="@+id/edtStatus"
+            android:id="@+id/add_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Trạng thái" />
 
-        <!-- Nút Lưu -->
+        <!-- Nút lưu -->
         <Button
-            android:id="@+id/btnSave"
+            android:id="@+id/btn_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lưu thay đổi"
+            android:text="Thêm phim mới"
             android:layout_marginTop="12dp" />
     </LinearLayout>
 </ScrollView>
