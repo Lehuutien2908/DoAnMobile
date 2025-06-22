@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Tên phim -->
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên phim" />
+
+        <!-- Thời lượng -->
+        <EditText
+            android:id="@+id/edtDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Thời lượng (phút)"
+            android:inputType="number" />
+
+        <!-- Thể loại -->
+        <EditText
+            android:id="@+id/edtGenre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Thể loại" />
+
+        <!-- Độ tuổi -->
+        <EditText
+            android:id="@+id/edtAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Độ tuổi" />
+
+        <!-- Mô tả -->
+        <EditText
+            android:id="@+id/edtDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mô tả"
+            android:minLines="3"
+            android:gravity="top"
+            android:inputType="textMultiLine" />
+
+        <!-- Link ảnh banner -->
+        <EditText
+            android:id="@+id/edtImgBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Link ảnh banner" />
+
+        <!-- Preview ảnh banner -->
+        <ImageView
+            android:id="@+id/imgBannerPreview"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_image" />
+
+        <!-- Link ảnh poster -->
+        <EditText
+            android:id="@+id/edtImgMovie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Link ảnh poster" />
+
+        <!-- Preview ảnh poster -->
+        <ImageView
+            android:id="@+id/imgMoviePreview"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_image" />
+
+        <!-- Trạng thái -->
+        <EditText
+            android:id="@+id/edtStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Trạng thái" />
+
+        <!-- Nút Lưu -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lưu thay đổi"
+            android:layout_marginTop="12dp" />
+    </LinearLayout>
+</ScrollView>
