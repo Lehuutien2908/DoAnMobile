@@ -1,6 +1,9 @@
 package com.example.doanmobile.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -29,13 +32,31 @@ public class MovieManagementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_management_admin);
 
+        // Khởi tạo view
         recyclerMovies = findViewById(R.id.recyclerMovies);
         recyclerMovies.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MovieAdminAdapter(this, movieList);
         recyclerMovies.setAdapter(adapter);
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
+        // Quay lại
+        ImageButton btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
+
+        // Nút thêm phim
+        Button btnAdd = findViewById(R.id.btnAddMovie);
+        btnAdd.setOnClickListener(v -> {
+            Intent intent = new Intent(MovieManagementActivity.this, AddMovieActivity.class);
+            startActivity(intent);
+        });
+        // Firebase
         db = FirebaseFirestore.getInstance();
         loadMoviesFromFirebase();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadMoviesFromFirebase(); // Refresh khi quay lại
     }
 
     private void loadMoviesFromFirebase() {
