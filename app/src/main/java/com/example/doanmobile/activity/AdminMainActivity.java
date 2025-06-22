@@ -6,12 +6,13 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.doanmobile.R;
 
 public class AdminMainActivity extends AppCompatActivity {
 
-    View layoutMovie, layoutSchedule, layoutRevenue;
+    CardView layoutMovieManagement, layoutSchedule, layoutDashboard;
     Button btnLogout;
 
     @Override
@@ -19,17 +20,38 @@ public class AdminMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
 
-        layoutRevenue = findViewById(R.id.layoutDashboard);
+        // Ánh xạ view
+        layoutMovieManagement = findViewById(R.id.layoutMovieManagement);
         layoutSchedule = findViewById(R.id.layoutSchedule);
-        layoutMovie = findViewById(R.id.layoutMovieManagement);
+        layoutDashboard = findViewById(R.id.layoutDashboard);
         btnLogout = findViewById(R.id.btnLogout);
 
-        layoutMovie.setOnClickListener(v -> startActivity(new Intent(this, MovieManagementActivity.class)));
+        // Xử lý sự kiện mở Quản lý phim
+        layoutMovieManagement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminMainActivity.this, MovieManagementActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        layoutSchedule.setOnClickListener(v -> startActivity(new Intent(this, ScheduleManagementActivity.class)));
+        // Xử lý sự kiện mở Quản lý lịch chiếu
+        layoutSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminMainActivity.this, ScheduleManagementActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        layoutRevenue.setOnClickListener(v -> startActivity(new Intent(this, DashboardActivity.class)));
+        // Xử lý sự kiện mở Dashboard doanh thu
+        layoutDashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminMainActivity.this, DashboardActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        btnLogout.setOnClickListener(v -> finishAffinity());
     }
 }

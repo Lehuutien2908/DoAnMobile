@@ -1,51 +1,83 @@
 package com.example.doanmobile.adapter;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.doanmobile.R;
-import com.example.doanmobile.activity.MovieManagementActivity;
+import com.example.doanmobile.activity.EditMovieActivity;
 import com.example.doanmobile.model.Movie;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
 public class MovieAdminAdapter extends RecyclerView.Adapter<MovieAdminAdapter.MovieViewHolder> {
 
+    private Context context;
     private List<Movie> movieList;
 
-    public MovieAdminAdapter(List<Movie> movieList) {
+    public MovieAdminAdapter(Context context, List<Movie> movieList) {
+        this.context = context;
         this.movieList = movieList;
     }
 
-    public MovieAdminAdapter(MovieManagementActivity movieManagementActivity, List<com.example.doanmobile.model.Movie> movieList) {
-    }
-
-    public static class MovieViewHolder extends RecyclerView.ViewHolder {
-        public TextView movieTitle;
-        public TextView movieDescription;
-
-        public MovieViewHolder(View view) {
-            super(view);
-            movieTitle = view.findViewById(com.example.doanmobile.R.id.movie_title);
-            movieDescription = view.findViewById(R.id.movieTitle);
-        }
-    }
-
+    @NonNull
     @Override
-    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.manager_movie_admin, parent, false);
+    public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_movie_admin, parent, false);
         return new MovieViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(MovieViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         Movie movie = movieList.get(position);
-        holder.movieTitle.setText(movie.getTitle());
-        holder.movieDescription.setText(movie.getDescription());
+        holder.tvTitle.setText(movie.getName());
+
+        Glide.with(context)
+                .load(movie.getImgMovie())
+                .placeholder(R.drawable.placeholder_image)
+                .into(holder.imgMovie);
+
+        // Nút sửa
+        holder.btnEdit.setOnClickListener(v -> {
+            Intent intent = new Intent(context, EditMovieActivity.class);
+            intent.putExtra("movie", movie);
+            intent.putExtra("movieId", movie.getId());
+            context.startActivity(intent);
+        });
+
+        // Nút xoá có xác nhận
+        holder.btnDelete.setOnClickListener(v -> {
+            new AlertDialog.Builder(context)
+                    .setTitle("Xác nhận xoá")
+                    .setMessage("Bạn có chắc muốn xoá phim \"" + movie.getName() + "\" không?")
+                    .setPositiveButton("Xoá", (dialog, which) -> {
+                        FirebaseFirestore.getInstance().collection("movies")
+                                .document(movie.getId())
+                                .delete()
+                                .addOnSuccessListener(unused -> {
+                                    Toast.makeText(context, "Đã xoá phim", Toast.LENGTH_SHORT).show();
+                                    movieList.remove(position);
+                                    notifyItemRemoved(position);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(context, "Lỗi xoá: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+                    })
+                    .setNegativeButton("Huỷ", null)
+                    .show();
+        });
     }
 
     @Override
@@ -53,17 +85,17 @@ public class MovieAdminAdapter extends RecyclerView.Adapter<MovieAdminAdapter.Mo
         return movieList.size();
     }
 
-    // Class dữ liệu mẫu
-    public static class Movie {
-        private String title;
-        private String description;
+    public static class MovieViewHolder extends RecyclerView.ViewHolder {
+        TextView tvTitle;
+        ImageView imgMovie;
+        ImageButton btnDelete, btnEdit;
 
-        public Movie(String title, String description) {
-            this.title = title;
-            this.description = description;
+        public MovieViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvTitle = itemView.findViewById(R.id.movie_name);  // hoặc tvTitle tùy XML
+            imgMovie = itemView.findViewById(R.id.imgMovie);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
+            btnEdit = itemView.findViewById(R.id.btnEdit);
         }
-
-        public String getTitle() { return title; }
-        public String getDescription() { return description; }
     }
 }
