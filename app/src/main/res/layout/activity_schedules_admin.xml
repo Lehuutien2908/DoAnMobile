@@ -6,16 +6,31 @@
     android:padding="16dp"
     android:background="#FAFAFA">
 
-    <!-- Tiêu đề -->
-    <TextView
+    <!-- Header: Nút quay lại + tiêu đề -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="🗓️ Quản Lý Lịch Chiếu"
-        android:textSize="22sp"
-        android:textColor="#333333"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="16dp" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back"
+            android:contentDescription="Quay lại" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🗓️ Quản Lý Lịch Chiếu"
+            android:textSize="20sp"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:layout_marginStart="12dp" />
+    </LinearLayout>
 
     <!-- Tìm kiếm -->
     <EditText

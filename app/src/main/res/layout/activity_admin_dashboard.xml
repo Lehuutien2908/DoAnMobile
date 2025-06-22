@@ -12,15 +12,31 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Header -->
-        <TextView
+        <!-- Header: Nút quay lại + tiêu đề -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="Dashboard Admin"
-            android:textColor="#222222"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back"
+                android:contentDescription="Quay lại" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dashboard Admin"
+                android:textColor="#222222"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
 
         <!-- Stats Section -->
         <GridLayout
@@ -41,7 +57,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="16dp">
@@ -50,15 +66,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="6dp"
-                        android:text="Tổng đơn hàng"
+                        android:text="Tổng số vé đã bán"
                         android:textColor="#2962FF"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/sovetong"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="34.689"
+                        android:text="0"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -76,7 +93,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="16dp">
@@ -91,9 +108,10 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/phimdangchieu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4"
+                        android:text="0"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -111,7 +129,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="16dp">
@@ -120,15 +138,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="6dp"
-                        android:text="Người dùng mới"
+                        android:text="Người dùng"
                         android:textColor="#9C27B0"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/songuoidung"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="620"
+                        android:text="0"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -146,7 +165,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="16dp">
@@ -161,11 +180,12 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tongdoanhthu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3.500.000.000 VNĐ"
+                        android:text="0 "
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -189,12 +209,13 @@
             card_view:cardElevation="4dp">
 
             <TextView
+                android:id="@+id/txtRecentActivity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="16dp"
-                android:text="- Nguyễn Văn A đặt vé cho phim '.........'\n\n- Thêm phim mới '.........'\n\n- Cập nhật lịch chiếu '.........'\n\n- Trần Thị B đăng ký tài khoản mới\n\n- Thêm phim mới '.........'\n\n- Cập nhật lịch chiếu '.........'\n\n- Trần Thị B đăng ký tài khoản mới\n\n- Thêm phim mới '.........'\n\n- Cập nhật lịch chiếu '.........'\n\n- Trần Thị B đăng ký tài khoản mới\n\n- Thêm phim mới '.........'\n\n- Cập nhật lịch chiếu '.........'\n\n- Trần Thị B đăng ký tài khoản mới"
+                android:text="Đang tải hoạt động..."
                 android:textColor="#444444"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 </ScrollView>

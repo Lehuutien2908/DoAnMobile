@@ -27,13 +27,13 @@ public class MovieManagementActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movies_management);
+        setContentView(R.layout.activity_movies_management_admin);
 
         recyclerMovies = findViewById(R.id.recyclerMovies);
         recyclerMovies.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MovieAdminAdapter(this, movieList);
         recyclerMovies.setAdapter(adapter);
-
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         db = FirebaseFirestore.getInstance();
         loadMoviesFromFirebase();
     }
