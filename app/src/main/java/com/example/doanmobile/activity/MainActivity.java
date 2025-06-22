@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         loadBannersFromFirestore();
 
         // Tab
-        rvMovies     = findViewById(R.id.rvMovies);
+        rvMovies = findViewById(R.id.rvMovies);
         tabDangChieu = findViewById(R.id.tab_dang_chieu);
         tabSapChieu = findViewById(R.id.tab_sap_chieu);
 
@@ -111,11 +111,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     private void highlightTab() {
         boolean isDang = "dang_chieu".equals(currentStatus);
         tabDangChieu.setTextColor(getColor(isDang ? R.color.black : R.color.darker_gray));
         tabSapChieu.setTextColor(getColor(!isDang ? R.color.black : R.color.darker_gray));
     }
+
     private void loadMovies(String status) {
         FirebaseFirestore.getInstance().collection("movies")
                 .whereEqualTo("status", status)
@@ -131,7 +133,9 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     adapter.notifyDataSetChanged();
-                    rvMovies.post(() -> { rvMovies.requestLayout(); });
+                    rvMovies.post(() -> {
+                        rvMovies.requestLayout();
+                    });
                 })
                 .addOnFailureListener(e ->
                         Toast.makeText(this, "Lỗi tải phim: " + e.getMessage(),
@@ -177,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         bannerContainer.addView(img);
         bannerViews.add(img);
     }
+
     private void startAutoScroll() {
         autoScrollHandler.postDelayed(new Runnable() {
             @Override

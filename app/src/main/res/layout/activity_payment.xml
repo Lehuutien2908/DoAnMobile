@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     android:id="@+id/payment">
 
     <!-- Thanh công cụ có nút Back và tiêu đề -->
@@ -91,12 +92,19 @@
                 android:id="@+id/txtSeats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="5dp"
                 android:text="Ghế: " />
+
+            <TextView
+                android:id="@+id/txtRoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="Phòng: " />
 
             <!-- Thông tin bắp nước -->
             <LinearLayout
-                android:id="@+id/layoutSnackInfo"
+                android:id="@+id/layoutComboInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
@@ -133,7 +141,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txtTotalSnackPrice"
+                        android:id="@+id/txtTotalComboPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0đ"
