@@ -4,11 +4,18 @@ public class Theater {
     private String name;
     private String address;
     private String image;
-
+    private String id;
 
     public Theater() {}
 
     public Theater(String name, String address, String image) {
+        this.name = name;
+        this.address = address;
+        this.image = image;
+    }
+
+    public Theater(String id, String name, String address, String image) {
+        this.id = id;
         this.name = name;
         this.address = address;
         this.image = image;
@@ -37,5 +44,13 @@ public class Theater {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 } 

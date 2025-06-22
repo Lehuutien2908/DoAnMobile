@@ -68,6 +68,9 @@
         <activity android:name=".activity.ComboActivity" />
         <activity android:name=".activity.InfoActivity"/>
 
+
+        <activity android:name=".activity.CinemaDetailActivity"/>
+
     </application>
 
 </manifest>

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DoAnMobile</string>
     <string name="ten_phim">Tên Phim</string>
+    <string name="cinema_image_description">Ảnh rạp</string>
 </resources>
