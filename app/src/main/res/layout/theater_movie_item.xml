@@ -31,7 +31,7 @@
         android:id="@+id/movie_poster"
         android:layout_width="100dp"
         android:layout_height="150dp"
-        android:src="@drawable/item_movie1"
+        android:src="@drawable/item_movie_bklr"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="46dp" />
 
