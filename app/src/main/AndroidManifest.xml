@@ -12,15 +12,32 @@
         android:theme="@style/Theme.DoAnMobile"
         tools:targetApi="31">
 
+
+
         <!-- Màn hình xác nhận đặt vé -->
         <activity android:name=".activity.BookingConfirmActivity" />
+
+        <!-- Màn hình vé của tôi -->
+        <activity android:name=".activity.MyTicketsActivity" />
+
+        <!-- Màn hình đăng nhập-->
+        <activity android:name=".activity.MainActivity" />
+
+        <!-- Màn hình đăng ký-->
+        <activity android:name=".activity.RegisterActivity" />
+
+        <!-- Màn hình quên mật khẩu-->
+        <activity android:name=".activity.ForgotPasswordActivity" />
+
+        <!-- Màn hình chi tiết vé-->
+        <activity android:name=".activity.TicketDetailActivity" />
 
         <!-- Màn hình thanh toán -->
         <activity android:name=".activity.PaymentActivity" />
 
         <!-- Màn hình chính -->
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
