@@ -42,29 +42,14 @@ public class RegisterActivity extends AppCompatActivity {
             auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            // Thêm vào Firestore collection "accounts"
-                            String uid = auth.getCurrentUser().getUid();
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("email", email);
-
+                            Map<String, Object> log = new HashMap<>();
+                            log.put("message", "Thêm tài khoản mới: " + email);
                             FirebaseFirestore.getInstance()
-                                    .collection("accounts")
-                                    .document(uid)
-                                    .set(user)
-                                    .addOnSuccessListener(unused -> {
-                                        // ✅ Ghi log vào activity_logs
-                                        Map<String, Object> log = new HashMap<>();
-                                        log.put("message", "Thêm tài khoản mới: " + email);
-                                        FirebaseFirestore.getInstance()
-                                                .collection("activity_logs")
-                                                .add(log);
+                                    .collection("activity_logs")
+                                    .add(log);
 
-                                        Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                        finish();
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        Toast.makeText(this, "Đăng ký thất bại (Firestore)!", Toast.LENGTH_SHORT).show();
-                                    });
+                            Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                            finish();
                         } else {
                             Toast.makeText(this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                         }
