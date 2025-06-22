@@ -58,9 +58,8 @@
         <activity android:name=".activity.EditMovieActivity" />
         <activity android:name=".activity.ScheduleManagementActivity" />
         <activity android:name=".activity.DashboardActivity" />
-        <activity android:name=".activity.AddMovieActivity"/>
-
-
+        <activity android:name=".activity.AddMovieActivity" />
+        <activity android:name=".activity.UserListAdminActivity"/>
         <!-- Admin -->
 
 
