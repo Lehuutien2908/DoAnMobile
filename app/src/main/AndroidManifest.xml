@@ -38,7 +38,7 @@
 
         <!-- Màn hình chính -->
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.AdminMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,7 +53,6 @@
         <activity android:name=".activity.MovieListActivity" />
         <activity android:name=".activity.AccountActivity"/>
         <!-- Admin -->
-        <activity android:name=".activity.AdminMainActivity" />
         <activity android:name=".activity.MovieManagementActivity" />
         <activity android:name=".activity.EditMovieActivity" />
         <activity android:name=".activity.ScheduleManagementActivity" />
