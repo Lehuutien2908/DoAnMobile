@@ -76,7 +76,7 @@ public class SeatBookingActivity extends AppCompatActivity {
 
 
 
-        createSampleSeatsForShowtime("time3");
+//        createSampleSeatsForShowtime("zs4ATNrstamTHJ5HxSSW");
 
 
 
@@ -378,46 +378,40 @@ public class SeatBookingActivity extends AppCompatActivity {
                 .replace("\u202c", ""); // Pop Directional Formatting
     }
 
-    /**
-     * HÀM NÀY CHỈ DÙNG ĐỂ TẠO DỮ LIỆU GHẾ MẪU LÊN FIREBASE MỘT LẦN DUY NHẤT.
-     * SAU KHI CHẠY THÀNH CÔNG VÀ XÁC NHẬN DỮ LIỆU TRÊN FIREBASE CONSOLE,
-     * BẠN NÊN XÓA HOẶC COMMENT LẠI LỜI GỌI HÀM NÀY TRONG onCreate() ĐỂ TRÁNH GHI LẠI DỮ LIỆU.
-     *
-     * @param showtimeId ID của suất chiếu mà bạn muốn tạo ghế mẫu.
-     */
-    private void createSampleSeatsForShowtime(String showtimeId) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String[] rowLabels = {"I", "H", "G", "F", "E", "D", "C", "B", "A"};
-        int numRows = rowLabels.length; // Tổng số hàng
-        int numCols = 8; // Tổng số cột
 
-        Log.d("SeatBookingActivity", "Bắt đầu tạo dữ liệu ghế mẫu cho suất chiếu: " + showtimeId);
-
-        for (int r = 0; r < numRows; r++) {
-            String row = rowLabels[r];
-            for (int col = 1; col <= numCols; col++) {
-                String seatCode = row + col;
-                Map<String, Object> seat = new HashMap<>();
-                seat.put("code", seatCode);
-                seat.put("type", "normal"); // Mặc định là normal, bạn có thể tùy chỉnh
-                seat.put("price", 95000);    // Mặc định giá 95,000đ, bạn có thể tùy chỉnh
-                seat.put("status", "available"); // Ban đầu tất cả đều available
-                seat.put("userId", ""); // Ban đầu chưa có user nào mua
-
-                // Ghi dữ liệu ghế lên Firebase
-                db.collection("showtimes")
-                  .document(showtimeId)
-                  .collection("seats")
-                  .document(seatCode)
-                  .set(seat)
-                  .addOnSuccessListener(aVoid -> {
-                      Log.d("SeatBookingActivity", "Ghế " + seatCode + " tạo thành công.");
-                  })
-                  .addOnFailureListener(e -> {
-                      Log.e("SeatBookingActivity", "Lỗi khi tạo ghế " + seatCode + ": " + e.getMessage());
-                  });
-            }
-        }
-        Log.d("SeatBookingActivity", "Hoàn tất yêu cầu tạo ghế mẫu.");
-    }
+//    private void createSampleSeatsForShowtime(String showtimeId) {
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        String[] rowLabels = {"I", "H", "G", "F", "E", "D", "C", "B", "A"};
+//        int numRows = rowLabels.length; // Tổng số hàng
+//        int numCols = 8; // Tổng số cột
+//
+//        Log.d("SeatBookingActivity", "Bắt đầu tạo dữ liệu ghế mẫu cho suất chiếu: " + showtimeId);
+//
+//        for (int r = 0; r < numRows; r++) {
+//            String row = rowLabels[r];
+//            for (int col = 1; col <= numCols; col++) {
+//                String seatCode = row + col;
+//                Map<String, Object> seat = new HashMap<>();
+//                seat.put("code", seatCode);
+//                seat.put("type", "normal"); // Mặc định là normal, bạn có thể tùy chỉnh
+//                seat.put("price", 95000);    // Mặc định giá 95,000đ, bạn có thể tùy chỉnh
+//                seat.put("status", "available"); // Ban đầu tất cả đều available
+//                seat.put("userId", ""); // Ban đầu chưa có user nào mua
+//
+//                // Ghi dữ liệu ghế lên Firebase
+//                db.collection("showtimes")
+//                  .document(showtimeId)
+//                  .collection("seats")
+//                  .document(seatCode)
+//                  .set(seat)
+//                  .addOnSuccessListener(aVoid -> {
+//                      Log.d("SeatBookingActivity", "Ghế " + seatCode + " tạo thành công.");
+//                  })
+//                  .addOnFailureListener(e -> {
+//                      Log.e("SeatBookingActivity", "Lỗi khi tạo ghế " + seatCode + ": " + e.getMessage());
+//                  });
+//            }
+//        }
+//        Log.d("SeatBookingActivity", "Hoàn tất yêu cầu tạo ghế mẫu.");
+//    }
 }

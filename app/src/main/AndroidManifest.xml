@@ -58,7 +58,7 @@
         <activity android:name=".activity.EditMovieActivity" />
         <activity android:name=".activity.ScheduleManagementActivity" />
         <activity android:name=".activity.DashboardActivity" />
-
+        <activity android:name=".activity.AddMovieActivity" />
 
         <!-- Admin -->
 
@@ -66,6 +66,7 @@
         <activity android:name=".activity.SeatBookingActivity" />
         <activity android:name=".activity.ComboActivity" />
         <activity android:name=".activity.InfoActivity"/>
+        <activity android:name=".activity.AddScheduleActivity"/>
 
     </application>
 
