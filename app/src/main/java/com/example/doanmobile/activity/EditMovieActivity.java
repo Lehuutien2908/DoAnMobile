@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.doanmobile.R;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FieldValue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -106,9 +107,10 @@ public class EditMovieActivity extends AppCompatActivity {
                 DocumentReference docRef = db.collection("movies").document(movieId);
                 docRef.update(update)
                         .addOnSuccessListener(aVoid -> {
-                            // Ghi log hoạt động
+                            // Ghi log hoạt động có thêm timestamp
                             Map<String, Object> log = new HashMap<>();
                             log.put("message", "Đã cập nhật phim: " + updatedName);
+                            log.put("timestamp", FieldValue.serverTimestamp());
                             db.collection("activity_logs").add(log);
 
                             Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();

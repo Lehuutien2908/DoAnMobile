@@ -10,8 +10,8 @@ import com.bumptech.glide.Glide;
 import com.example.doanmobile.R;
 import com.example.doanmobile.model.ComboModel;
 import com.example.doanmobile.model.TicketModel;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.*;
@@ -134,6 +134,10 @@ public class PaymentActivity extends AppCompatActivity {
                 .document(ticketId)
                 .set(ticket)
                 .addOnSuccessListener(unused -> {
+                    // Ghi log vào activity_logs (chỉ có message)
+                    String logMsg = "Đã đặt vé mới cho phim: " + movieName + " - Người dùng: " + auth.getCurrentUser().getEmail();
+                    addActivityLog(logMsg);
+
                     // Thành công thì chuyển sang màn hình xác nhận
                     Intent confirmIntent = new Intent(PaymentActivity.this, BookingConfirmActivity.class);
                     confirmIntent.putExtra("ticketId", ticketId); // nếu muốn xem vé sau
@@ -145,4 +149,12 @@ public class PaymentActivity extends AppCompatActivity {
                 });
     }
 
+    // Hàm ghi log đơn giản, chỉ có message (KHÔNG CÓ timestamp)
+    private void addActivityLog(String message) {
+        Map<String, Object> log = new HashMap<>();
+        log.put("message", message);
+        log.put("timestamp", FieldValue.serverTimestamp());
+        firestore.collection("activity_logs")
+                .add(log);
+    }
 }
