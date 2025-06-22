@@ -55,7 +55,7 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void loadTotalUsers() {
-        db.collection("accounts").get().addOnSuccessListener(query -> {
+        db.collection("users").get().addOnSuccessListener(query -> {
             int count = query.size();
             txtSoNguoiDung.setText(String.valueOf(count));
         }).addOnFailureListener(e -> txtSoNguoiDung.setText("Lỗi"));
