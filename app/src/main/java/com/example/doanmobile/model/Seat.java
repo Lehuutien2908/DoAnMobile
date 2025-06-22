@@ -8,7 +8,6 @@ public class Seat {
     private String userId;    // User ID nếu ghế đã bán
     private String showtimeId;
     public Seat() {
-        // Public no-argument constructor needed for Firestore
     }
 
     public Seat(String code, String type, int price, String status, String userId) {

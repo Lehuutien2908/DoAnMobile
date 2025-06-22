@@ -1,198 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="@android:color/white"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp">
+    android:orientation="vertical"
+    android:background="@android:color/white">
 
-    <!-- Header: Tên rạp, tên phim, suất chiếu -->
-    <LinearLayout
-        android:orientation="vertical"
+    <!-- Nội dung cuộn được -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="8dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp">
 
-        <!-- Tên rạp -->
-        <TextView
-            android:id="@+id/tvCinemaName"
-            android:text="Đang tải tên rạp..."
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <!-- Tên phim và giờ chiếu -->
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+            android:orientation="vertical">
+
+            <!-- Header: Tên rạp, tên phim, suất chiếu -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:id="@+id/tvCinemaName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đang tải tên rạp..."
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvMovieTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đang tải tên phim..."
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tvSelectedTimeDisplay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_gray_round"
+                        android:gravity="center"
+                        android:paddingStart="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="4dp"
+                        android:text="--"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvMovieType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đang tải loại phim..."
+                    android:textColor="#888888" />
+            </LinearLayout>
+
+            <!-- Ghế: GridLayout + Label hàng -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView style="@style/SeatRowLabel" android:text="A" />
+                        <TextView style="@style/SeatRowLabel" android:text="B" />
+                        <TextView style="@style/SeatRowLabel" android:text="C" />
+                        <TextView style="@style/SeatRowLabel" android:text="D" />
+                        <TextView style="@style/SeatRowLabel" android:text="E" />
+                        <TextView style="@style/SeatRowLabel" android:text="F" />
+                        <TextView style="@style/SeatRowLabel" android:text="G" />
+                        <TextView style="@style/SeatRowLabel" android:text="H" />
+                        <TextView style="@style/SeatRowLabel" android:text="I" />
+                    </LinearLayout>
+
+                    <GridLayout
+                        android:id="@+id/gridSeats"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:columnCount="8"
+                        android:rowCount="9" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView style="@style/SeatRowLabel" android:text="A" />
+                        <TextView style="@style/SeatRowLabel" android:text="B" />
+                        <TextView style="@style/SeatRowLabel" android:text="C" />
+                        <TextView style="@style/SeatRowLabel" android:text="D" />
+                        <TextView style="@style/SeatRowLabel" android:text="E" />
+                        <TextView style="@style/SeatRowLabel" android:text="F" />
+                        <TextView style="@style/SeatRowLabel" android:text="G" />
+                        <TextView style="@style/SeatRowLabel" android:text="H" />
+                        <TextView style="@style/SeatRowLabel" android:text="I" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <TextView
-                android:id="@+id/tvMovieTitle"
-                android:text="Đang tải tên phim..."
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="MÀN HÌNH"
+                android:textColor="#888888" />
 
             <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"/>
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginBottom="8dp"
+                android:background="@android:color/holo_orange_light" />
 
-            <TextView
-                android:id="@+id/tvSelectedTimeDisplay"
-                android:text="--"
-                android:background="@drawable/bg_gray_round"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@android:color/black"/>
-        </LinearLayout>
-
-        <!-- Loại phim (2D LỒNG TIẾNG) -->
-        <TextView
-            android:id="@+id/tvMovieType"
-            android:text="Đang tải loại phim..."
-            android:textColor="#888888"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-    <!-- Ghế: GridLayout + Label hàng -->
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <!-- Label cột trái -->
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_marginBottom="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <TextView android:text="A" style="@style/SeatRowLabel"/>
-                <TextView android:text="B" style="@style/SeatRowLabel"/>
-                <TextView android:text="C" style="@style/SeatRowLabel"/>
-                <TextView android:text="D" style="@style/SeatRowLabel"/>
-                <TextView android:text="E" style="@style/SeatRowLabel"/>
-                <TextView android:text="F" style="@style/SeatRowLabel"/>
-                <TextView android:text="G" style="@style/SeatRowLabel"/>
-                <TextView android:text="H" style="@style/SeatRowLabel"/>
-                <TextView android:text="I" style="@style/SeatRowLabel"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#CCCCCC"
+                    android:enabled="false"
+                    android:text="Ghế thường" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#2196F3"
+                    android:enabled="false"
+                    android:text="Ghế đôi" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#BDBDBD"
+                    android:enabled="false"
+                    android:paddingEnd="8dp"
+                    android:text="Đã bán" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#FF6F00"
+                    android:enabled="false"
+                    android:text="Đang chọn" />
             </LinearLayout>
 
-            <!-- Ghế: GridLayout 9x8 -->
-            <GridLayout
-                android:id="@+id/gridSeats"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:rowCount="9"
-                android:columnCount="8"
-                android:layout_marginHorizontal="8dp">
-                <!-- Các ghế sẽ được add động từ code, mỗi ghế là 1 ImageView hoặc Button -->
-            </GridLayout>
-
-            <!-- Label cột phải -->
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <TextView android:text="A" style="@style/SeatRowLabel"/>
-                <TextView android:text="B" style="@style/SeatRowLabel"/>
-                <TextView android:text="C" style="@style/SeatRowLabel"/>
-                <TextView android:text="D" style="@style/SeatRowLabel"/>
-                <TextView android:text="E" style="@style/SeatRowLabel"/>
-                <TextView android:text="F" style="@style/SeatRowLabel"/>
-                <TextView android:text="G" style="@style/SeatRowLabel"/>
-                <TextView android:text="H" style="@style/SeatRowLabel"/>
-                <TextView android:text="I" style="@style/SeatRowLabel"/>
+                <TextView
+                    android:id="@+id/tvSeatInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8x ghế: I1, I2, I3, I4, I5, I6, I7, I8"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tvTotalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng cộng: 760,000Đ"
+                    android:textColor="#FF9800"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
-    </HorizontalScrollView>
+    </ScrollView>
 
-    <!-- Màn hình -->
-    <TextView
-        android:text="MÀN HÌNH"
-        android:gravity="center"
-        android:textColor="#888888"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@android:color/holo_orange_light"
-        android:layout_marginBottom="8dp"/>
-
-    <!-- Chú thích loại ghế -->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="8dp">
-
-        <CheckBox android:text="Ghế thường" android:buttonTint="#CCCCCC" android:enabled="false" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-        <CheckBox android:text="Ghế đôi" android:buttonTint="#2196F3" android:enabled="false" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-        <CheckBox android:text="Ghế VIP" android:buttonTint="#FFD600" android:enabled="false" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-        <CheckBox android:text="Ghế ba" android:buttonTint="#FF9800" android:enabled="false" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-        <CheckBox android:text="Đã bán" android:buttonTint="#BDBDBD" android:enabled="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingEnd="8dp"/>
-        <CheckBox android:text="Đang chọn" android:buttonTint="#FF6F00" android:enabled="false" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <!-- Thông tin ghế và tổng tiền -->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/tvSeatInfo"
-            android:text="8x ghế: I1, I2, I3, I4, I5, I6, I7, I8"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/tvTotalPrice"
-            android:text="Tổng cộng: 760,000Đ"
-            android:textColor="#FF9800"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <!-- Nút tiếp tục -->
+    <!-- Nút tiếp tục luôn dưới cùng -->
     <Button
         android:id="@+id/btnContinue"
-        android:text="Tiếp Tục"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_margin="8dp"
         android:backgroundTint="#FF9800"
+        android:text="Tiếp Tục"
         android:textColor="@android:color/white"
-        android:textStyle="bold"/>
-</LinearLayout> 
+        android:textStyle="bold" />
+</LinearLayout>
