@@ -1,6 +1,8 @@
 package com.example.doanmobile.model;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable{
     private String id;
     private String imgMovie;
     private String name;
