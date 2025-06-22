@@ -34,6 +34,7 @@
 
     <!-- Tìm kiếm -->
     <EditText
+        android:id="@+id/editSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="🔍 Tìm kiếm lịch chiếu..."
@@ -43,6 +44,7 @@
 
     <!-- Nút thêm -->
     <Button
+        android:id="@+id/btnAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="+ Thêm Lịch Chiếu Mới"
