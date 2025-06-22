@@ -2,13 +2,16 @@ package com.example.doanmobile.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doanmobile.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText emailInput, passwordInput;
@@ -39,8 +42,29 @@ public class RegisterActivity extends AppCompatActivity {
             auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                            finish();
+                            // Thêm vào Firestore collection "accounts"
+                            String uid = auth.getCurrentUser().getUid();
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("email", email);
+
+                            FirebaseFirestore.getInstance()
+                                    .collection("accounts")
+                                    .document(uid)
+                                    .set(user)
+                                    .addOnSuccessListener(unused -> {
+                                        // ✅ Ghi log vào activity_logs
+                                        Map<String, Object> log = new HashMap<>();
+                                        log.put("message", "Thêm tài khoản mới: " + email);
+                                        FirebaseFirestore.getInstance()
+                                                .collection("activity_logs")
+                                                .add(log);
+
+                                        Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(this, "Đăng ký thất bại (Firestore)!", Toast.LENGTH_SHORT).show();
+                                    });
                         } else {
                             Toast.makeText(this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                         }
@@ -54,4 +78,3 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 }
-
