@@ -11,18 +11,18 @@ public class UserModel implements Serializable {
     private String role;   // "user", "admin"...
 
     @Nullable private String sdt;
-    @Nullable private String name;
+    @Nullable private String fullName;
     @Nullable private String ngaySinh;
     @Nullable private String gioiTinh;
 
     public UserModel() {}          // required by Firestore
 
-    public UserModel(String uid, String mail, String passwordHash,String name) {
+    public UserModel(String uid, String mail, String passwordHash,String fullName) {
         this.userId       = uid;
         this.mail         = mail;
         this.passwordHash = passwordHash;
         this.role         = "user";
-        this.name =name;
+        this.fullName =fullName;
     }
 
     public UserModel(String userId, String mail, String passwordHash) {
@@ -33,11 +33,11 @@ public class UserModel implements Serializable {
 
     @Nullable
     public String getName() {
-        return name;
+        return fullName;
     }
 
-    public void setName(@Nullable String name) {
-        this.name = name;
+    public void setName(@Nullable String fullName) {
+        this.fullName = fullName;
     }
 
     public String getUserId() {

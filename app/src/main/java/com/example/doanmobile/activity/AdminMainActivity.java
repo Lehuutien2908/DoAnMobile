@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class AdminMainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
 
-    CardView layoutMovieManagement, layoutSchedule, layoutDashboard;
+    CardView layoutMovieManagement, layoutSchedule, layoutDashboard, layoutUserList;
     Button btnLogout;
 
     @Override
@@ -26,6 +26,7 @@ public class AdminMainActivity extends AppCompatActivity {
         layoutMovieManagement = findViewById(R.id.layoutMovieManagement);
         layoutSchedule = findViewById(R.id.layoutSchedule);
         layoutDashboard = findViewById(R.id.layoutDashboard);
+        layoutUserList = findViewById(R.id.layoutUserList); // Thêm dòng này
         btnLogout = findViewById(R.id.btnLogout);
 
         // Xử lý sự kiện mở Quản lý phim
@@ -55,6 +56,16 @@ public class AdminMainActivity extends AppCompatActivity {
             }
         });
 
+        // Xử lý sự kiện mở Danh sách người dùng
+        layoutUserList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminMainActivity.this,UserListAdminActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Đăng xuất
         auth = FirebaseAuth.getInstance();
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
