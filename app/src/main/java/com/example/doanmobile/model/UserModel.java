@@ -29,6 +29,7 @@ public class UserModel implements Serializable {
         this.userId = userId;
         this.mail = mail;
         this.passwordHash = passwordHash;
+        this.role="users";
     }
 
     @Nullable
