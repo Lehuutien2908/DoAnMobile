@@ -32,7 +32,7 @@ public class UserModel implements Serializable {
     }
 
     @Nullable
-    public String getName() {
+    public String getFullName() {
         return fullName;
     }
 

@@ -64,7 +64,7 @@ public class InfoActivity extends AppCompatActivity {
                     edtEmail.setText(currentUser.getMail());
                     edtEmail.setEnabled(false);
 
-                    edtFullName.setText(currentUser.getName());
+                    edtFullName.setText(currentUser.getFullName());
                     edtPhone.setText(currentUser.getSdt());
                     edtDob.setText(currentUser.getNgaySinh());
 

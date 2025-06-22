@@ -26,7 +26,7 @@ public class ListUserAdminAdapter extends RecyclerView.Adapter<ListUserAdminAdap
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         UserModel user = userList.get(position);
-        holder.txtUserName.setText(user.getName() == null ? "Không tên" : user.getName());
+        holder.txtUserName.setText(user.getFullName() == null ? "Không tên" : user.getFullName());
         holder.txtUserEmail.setText(user.getMail());
         holder.txtUserRole.setText(user.getRole());
         // Avatar: nếu muốn hiển thị ảnh, dùng Glide. Không thì giữ nguyên ảnh tĩnh.
