@@ -8,9 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanmobile.R;
-import com.example.doanmobile.adapter.AdminMovieAdapter;
+import com.example.doanmobile.adapter.MovieAdminAdapter;
 import com.example.doanmobile.model.Movie;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class MovieManagementActivity extends AppCompatActivity {
         movieList.add(new Movie("5", "Inside Out 2", "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/3/image/c5f0a1eff4c394a251036189ccddaacd/1/0/1080x1350-insideout.jpg", "active"));
 
         // Gán adapter
-        AdminMovieAdapter adapter = new AdminMovieAdapter(this, movieList);
+        MovieAdminAdapter adapter = new MovieAdminAdapter(this, movieList);
         recyclerMovies.setAdapter(adapter);
     }
 }
