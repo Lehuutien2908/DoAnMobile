@@ -9,8 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.doanmobile.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminMainActivity extends AppCompatActivity {
+    private FirebaseAuth auth;
 
     CardView layoutMovieManagement, layoutSchedule, layoutDashboard;
     Button btnLogout;
@@ -50,6 +52,18 @@ public class AdminMainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMainActivity.this, DashboardActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        auth = FirebaseAuth.getInstance();
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth.signOut();
+                Intent intent = new Intent(AdminMainActivity.this, LoginActivity.class); // hoặc MainActivity nếu muốn về trang chính
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear stack, không quay lại bằng back
+                startActivity(intent);
+                finish();
             }
         });
 
