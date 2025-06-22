@@ -21,7 +21,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TheaterActivity extends AppCompatActivity {
+public class TheaterActivity extends AppCompatActivity implements TheaterAdapter.OnTheaterClickListener {
 
     private RecyclerView theaterRecyclerView;
     private TheaterAdapter theaterAdapter;
@@ -49,7 +49,7 @@ public class TheaterActivity extends AppCompatActivity {
         theaterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         theaterList = new ArrayList<>();
-        theaterAdapter = new TheaterAdapter(theaterList);
+        theaterAdapter = new TheaterAdapter(theaterList, this);
         theaterRecyclerView.setAdapter(theaterAdapter);
 
         // Bắt đầu tải dữ liệu
@@ -93,6 +93,7 @@ public class TheaterActivity extends AppCompatActivity {
                         theaterList.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Theater theater = document.toObject(Theater.class);
+                            theater.setId(document.getId()); // Set the ID from Firestore document
                             theaterList.add(theater);
                         }
                         theaterAdapter.notifyDataSetChanged();
@@ -102,5 +103,17 @@ public class TheaterActivity extends AppCompatActivity {
                         Toast.makeText(TheaterActivity.this, "Lỗi tải danh sách rạp.", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    @Override
+    public void onTheaterClick(Theater theater) {
+        // Khi một rạp được click, chuyển sang CinemaDetailActivity và truyền ID rạp
+        Intent intent = new Intent(TheaterActivity.this, CinemaDetailActivity.class);
+        intent.putExtra("cinemaId", theater.getId());
+        intent.putExtra("cinemaName", theater.getName()); // Truyền tên rạp để hiển thị
+        intent.putExtra("cinemaAddress", theater.getAddress()); // Truyền địa chỉ rạp
+        intent.putExtra("cinemaImage", theater.getImage()); // Truyền ảnh rạp
+
+        startActivity(intent);
     }
 }
