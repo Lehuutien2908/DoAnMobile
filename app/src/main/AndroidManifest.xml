@@ -28,6 +28,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--Màn hình tài khoản-->
+        <activity android:name=".activity.AccountActivity" />
+
+        <!--        Màn hình chi tiết phim-->
+        <activity android:name=".activity.MovieDetailActivity" />
+
+        <!--        màn hình Danh sách phim-->
+        <activity android:name=".activity.MovieListActivity" />
+
+        <!--                màn hình rạp-->
+        <activity android:name=".activity.TheaterActivity" />
+
+        <activity android:name=".activity.AdminMainActivity" />
+        <activity android:name=".activity.MovieManagementActivity" />
+        <activity android:name=".activity.ScheduleManagementActivity" />
+        <activity android:name=".activity.DashboardActivity" />
 
         <activity android:name=".activity.SeatBookingActivity" />
 
