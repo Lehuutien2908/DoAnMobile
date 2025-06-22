@@ -49,7 +49,9 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void loadTotalMovies() {
-        db.collection("movies").get().addOnSuccessListener(query -> {
+        db.collection("movies")
+                .whereEqualTo("status", "dang_chieu")
+                .get().addOnSuccessListener(query -> {
             int count = query.size();
             txtPhimDangChieu.setText(String.valueOf(count));
         }).addOnFailureListener(e -> txtPhimDangChieu.setText("Lỗi"));
