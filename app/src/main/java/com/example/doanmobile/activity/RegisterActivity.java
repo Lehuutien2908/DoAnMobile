@@ -10,11 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.doanmobile.R;
 import com.example.doanmobile.model.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -28,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register); // file bạn vừa gửi
+        setContentView(R.layout.activity_register);
 
         // Ánh xạ
         emailInput           = findViewById(R.id.emailInput);
@@ -66,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                     String uid = auth.getCurrentUser().getUid();
-                    String hashedPassword = sha256(password); // hoặc không lưu nếu không cần
+                    String hashedPassword = sha256(password);
 
                     UserModel user = new UserModel(uid, email, hashedPassword); // role = "user"
 
@@ -74,6 +77,10 @@ public class RegisterActivity extends AppCompatActivity {
                             .document(uid)
                             .set(user)
                             .addOnSuccessListener(unused -> {
+                                // Ghi log tạo user mới (chỉ có message)
+                                String logMsg = "Đã tạo người dùng mới: " + email;
+                                addActivityLog(logMsg);
+
                                 Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                                 finish();
                             })
@@ -82,6 +89,14 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
+    // HÀM GHI LOG CHỈ CÓ MESSAGE
+    private void addActivityLog(String message) {
+        Map<String, Object> log = new HashMap<>();
+        log.put("message", message);
+        log.put("timestamp", FieldValue.serverTimestamp());
+        firestore.collection("activity_logs")
+                .add(log);
+    }
     private boolean validate(String email, String pw, String confirmPw) {
         if (TextUtils.isEmpty(email) || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "Email không hợp lệ", Toast.LENGTH_SHORT).show();

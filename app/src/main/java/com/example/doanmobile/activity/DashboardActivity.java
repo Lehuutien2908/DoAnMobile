@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.doanmobile.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.Query;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -48,7 +49,9 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void loadTotalMovies() {
-        db.collection("movies").get().addOnSuccessListener(query -> {
+        db.collection("movies")
+                .whereEqualTo("status", "dang_chieu")
+                .get().addOnSuccessListener(query -> {
             int count = query.size();
             txtPhimDangChieu.setText(String.valueOf(count));
         }).addOnFailureListener(e -> txtPhimDangChieu.setText("Lỗi"));
@@ -68,12 +71,13 @@ public class DashboardActivity extends AppCompatActivity {
                 Long price = doc.getLong("totalPrice");
                 if (price != null) total += price;
             }
-            txtTongDoanhThu.setText(String.format("%,d VNĐ", total));
+            txtTongDoanhThu.setText(String.format("%,d", total));
         }).addOnFailureListener(e -> txtTongDoanhThu.setText("Lỗi"));
     }
 
     private void loadRecentActivity() {
         db.collection("activity_logs")
+                .orderBy("timestamp", Query.Direction.DESCENDING) // Sắp xếp theo thời gian mới nhất
                 .get()
                 .addOnSuccessListener(query -> {
                     StringBuilder sb = new StringBuilder();
