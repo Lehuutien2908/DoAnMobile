@@ -5,4 +5,5 @@
     <color name="purple_500">#6200EE</color>
     <color name="darker_gray">#A9A9A9</color>
     <color name="blue">#3D90D7</color>
+    <color name="colorPrimary">#2196F3</color>
 </resources>

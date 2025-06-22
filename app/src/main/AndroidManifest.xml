@@ -29,6 +29,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activity.SeatBookingActivity" />
+
+        <activity android:name=".activity.TheaterActivity" />
+
+        <activity android:name=".activity.MovieDetailActivity" />
+
+        <activity android:name=".activity.MovieListActivity" />
+        <activity android:name=".activity.AccountActivity"/>
+
     </application>
 
 </manifest>

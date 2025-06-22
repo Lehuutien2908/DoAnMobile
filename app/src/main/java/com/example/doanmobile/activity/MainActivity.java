@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
 //thanh điều hướng
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setSelectedItemId(R.id.nav_home);  // đang ở Trang chủ
-
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
