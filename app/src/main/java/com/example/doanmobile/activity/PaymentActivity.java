@@ -127,7 +127,7 @@ public class PaymentActivity extends AppCompatActivity {
                 room,
                 comboList,
                 totalPrice,
-                new Timestamp(new java.util.Date())
+                new Date()
         );
 
         firestore.collection("tickets")

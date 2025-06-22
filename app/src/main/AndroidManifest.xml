@@ -22,7 +22,7 @@
         <activity android:name=".activity.MyTicketsActivity" />
 
         <!-- Màn hình đăng nhập-->
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.LoginActivity" />
 
         <!-- Màn hình đăng ký-->
         <activity android:name=".activity.RegisterActivity" />
@@ -38,7 +38,7 @@
 
         <!-- Màn hình chính -->
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,10 +59,13 @@
         <activity android:name=".activity.ScheduleManagementActivity" />
         <activity android:name=".activity.DashboardActivity" />
 
+
         <!-- Admin -->
 
 
         <activity android:name=".activity.SeatBookingActivity" />
+        <activity android:name=".activity.ComboActivity" />
+        <activity android:name=".activity.InfoActivity"/>
 
     </application>
 

@@ -46,9 +46,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                 .error(R.drawable.error_image)
                 .into(holder.moviePoster);
 
-        // Xử lý sự kiện click
         holder.itemView.setOnClickListener(v -> {
-            Toast.makeText(context, "Click phim: " + movie.getName(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context, MovieDetailActivity.class);
             intent.putExtra("movieId", movie.getId());
             context.startActivity(intent);

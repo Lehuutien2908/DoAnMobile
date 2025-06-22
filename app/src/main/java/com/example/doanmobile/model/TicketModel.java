@@ -3,6 +3,7 @@ package com.example.doanmobile.model;
 import com.google.firebase.Timestamp;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public class TicketModel implements Serializable {
@@ -15,14 +16,14 @@ public class TicketModel implements Serializable {
     private String room;
     private List<ComboModel> combos;
     private int totalPrice;
-    private Timestamp createdAt;
+    private Date createdAt;
 
     public TicketModel() {
         // Firestore cần constructor rỗng
     }
 
     public TicketModel(String userId, String movieName, String showTime, String cinema,
-                       String seats, String room, List<ComboModel> combos, int totalPrice, Timestamp createdAt) {
+                       String seats, String room, List<ComboModel> combos, int totalPrice, Date createdAt) {
         this.userId = userId;
         this.movieName = movieName;
         this.showTime = showTime;
@@ -106,11 +107,7 @@ public class TicketModel implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
+    public Date getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
 }

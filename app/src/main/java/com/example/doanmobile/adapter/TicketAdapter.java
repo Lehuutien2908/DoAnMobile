@@ -16,6 +16,8 @@ import com.example.doanmobile.model.TicketModel;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketViewHolder> {
@@ -46,12 +48,12 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
 
         // Convert timestamp
         if (ticket.getCreatedAt() != null) {
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm");
-            String dateStr = sdf.format(ticket.getCreatedAt().toDate());
-            holder.txtCreatedAt.setText("Ngày đặt: " + dateStr);
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            holder.txtCreatedAt.setText("Ngày đặt: " + df.format(ticket.getCreatedAt()));
         } else {
             holder.txtCreatedAt.setText("Ngày đặt: không rõ");
         }
+
 
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) listener.onTicketClick(ticket);
