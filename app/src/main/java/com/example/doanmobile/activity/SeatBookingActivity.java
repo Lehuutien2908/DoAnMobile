@@ -1,4 +1,6 @@
 package com.example.doanmobile.activity;
 
-public class SeatBookingActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class SeatBookingActivity extends AppCompatActivity {
 }
