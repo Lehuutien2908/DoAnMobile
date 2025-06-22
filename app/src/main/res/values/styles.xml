@@ -9,8 +9,12 @@
         <item name="android:textColor">#444444</item>
         <item name="android:textSize">14sp</item>
         <item name="android:layout_marginVertical">2dp</item>
-    </style>
 
+    </style>
+    <style name="AvatarCircle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item> <!-- Bo tròn hoàn toàn -->
+    </style>
     <!-- Các style khác của bạn nếu có -->
 
 </resources>

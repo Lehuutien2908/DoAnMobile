@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.doanmobile.R;
 import com.example.doanmobile.model.Seat;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,6 +31,9 @@ public class SeatBookingActivity extends AppCompatActivity {
     private String movieId;
     private String cinemaId;
     private String selectedTime; // Định dạng HH:mm (ví dụ: "15:00")
+    private String movieTitle; // Thêm biến để lưu tên phim
+    private String cinemaName; // Thêm biến để lưu tên rạp
+    private String posterUrl ; // Thêm biến để lưu URL poster phim
 
     // Các View trong layout activity_seat_booking.xml
     private GridLayout gridSeats;
@@ -67,7 +71,15 @@ public class SeatBookingActivity extends AppCompatActivity {
         movieId = intent.getStringExtra("movieId");
         cinemaId = intent.getStringExtra("cinemaId");
         selectedTime = intent.getStringExtra("time");
-//        createSampleSeatsForShowtime("time1");
+        posterUrl  =intent.getStringExtra("posterUrl");
+
+
+
+
+        createSampleSeatsForShowtime("time3");
+
+
+
 
         // Log dữ liệu nhận được để kiểm tra
         Log.d("SeatBookingActivity", "Received MovieId: " + movieId + ", CinemaId: " + cinemaId + ", Time: " + selectedTime);
@@ -86,9 +98,28 @@ public class SeatBookingActivity extends AppCompatActivity {
                 Toast.makeText(this, "Vui lòng chọn ít nhất một ghế!", Toast.LENGTH_SHORT).show();
                 return;
             }
-            // TODO: Chuyển sang màn hình thanh toán (PaymentActivity)
-            // Bạn cần truyền danh sách ghế đã chọn và tổng tiền qua Intent
-            Toast.makeText(this, "Đã chọn " + selectedSeats.size() + " ghế. Tổng tiền: " + formatCurrency(calculateTotalPrice()), Toast.LENGTH_LONG).show();
+            Intent toComboIntent = new Intent(this, ComboActivity.class);
+
+            // Truyền thông tin phim, rạp, suất chiếu
+            toComboIntent.putExtra("movieName", movieTitle);
+            toComboIntent.putExtra("showTime", selectedTime);
+            toComboIntent.putExtra("cinema", cinemaName);
+            Log.d("MovieDetailActivity", "URL being passed to SeatBookingActivity: " + posterUrl);
+            toComboIntent.putExtra("posterUrl", posterUrl); // Truyền URL poster phim
+
+            // Truyền danh sách ghế đã chọn
+            List<String> seatCodes = new ArrayList<>();
+            for (Seat seat : selectedSeats) {
+                seatCodes.add(seat.getCode());
+            }
+            toComboIntent.putExtra("seats", TextUtils.join(", ", seatCodes));
+            toComboIntent.putExtra("room", "1");
+
+            // Truyền tổng tiền ghế (tổng tiền đồ ăn vặt ban đầu là 0)
+            int seatsTotalPrice = calculateTotalPrice();
+            toComboIntent.putExtra("totalPrice", seatsTotalPrice); // Tổng tiền chỉ bao gồm tiền ghế ban đầu
+
+            startActivity(toComboIntent);
         });
 
     }
@@ -107,6 +138,7 @@ public class SeatBookingActivity extends AppCompatActivity {
                         String cinemaName = documentSnapshot.getString("name");
                         if (cinemaName != null) {
                             tvCinemaName.setText(cinemaName);
+                            this.cinemaName = cinemaName; // Lưu tên rạp vào biến
                         } else {
                             tvCinemaName.setText("Tên rạp không có");
                         }
@@ -136,9 +168,11 @@ public class SeatBookingActivity extends AppCompatActivity {
                         String movieTitle = documentSnapshot.getString("name");
                         String movieGenre = documentSnapshot.getString("genre");
                         String movieDuration = documentSnapshot.getString("duration"); // Giả sử có duration
+                        String posterUrl = documentSnapshot.getString("imgBanner"); // Lấy URL poster
 
                         if (movieTitle != null) {
                             tvMovieTitle.setText(movieTitle);
+                            this.movieTitle = movieTitle; // Lưu tên phim vào biến
                         }
                         // Cần điều chỉnh logic hiển thị loại phim (2D LỒNG TIẾNG) tùy theo dữ liệu Firebase
                         // Hiện tại đang lấy genre và duration. Có thể cần trường 'type' riêng (2D LỒNG TIẾNG) trong Movie model
@@ -148,6 +182,12 @@ public class SeatBookingActivity extends AppCompatActivity {
                             tvMovieType.setText(movieGenre);
                         } else {
                             tvMovieType.setText("Thông tin loại phim không có");
+                        }
+
+                        if (posterUrl != null) {
+                            this.posterUrl = posterUrl; // Lưu URL poster phim vào biến
+                        } else {
+                            this.posterUrl = ""; // Hoặc một URL mặc định nếu không có
                         }
 
                     } else {
@@ -345,39 +385,39 @@ public class SeatBookingActivity extends AppCompatActivity {
      *
      * @param showtimeId ID của suất chiếu mà bạn muốn tạo ghế mẫu.
      */
-//    private void createSampleSeatsForShowtime(String showtimeId) {
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        String[] rowLabels = {"I", "H", "G", "F", "E", "D", "C", "B", "A"};
-//        int numRows = rowLabels.length; // Tổng số hàng
-//        int numCols = 8; // Tổng số cột
-//
-//        Log.d("SeatBookingActivity", "Bắt đầu tạo dữ liệu ghế mẫu cho suất chiếu: " + showtimeId);
-//
-//        for (int r = 0; r < numRows; r++) {
-//            String row = rowLabels[r];
-//            for (int col = 1; col <= numCols; col++) {
-//                String seatCode = row + col;
-//                Map<String, Object> seat = new HashMap<>();
-//                seat.put("code", seatCode);
-//                seat.put("type", "normal"); // Mặc định là normal, bạn có thể tùy chỉnh
-//                seat.put("price", 95000);    // Mặc định giá 95,000đ, bạn có thể tùy chỉnh
-//                seat.put("status", "available"); // Ban đầu tất cả đều available
-//                seat.put("userId", ""); // Ban đầu chưa có user nào mua
-//
-//                // Ghi dữ liệu ghế lên Firebase
-//                db.collection("showtimes")
-//                  .document(showtimeId)
-//                  .collection("seats")
-//                  .document(seatCode)
-//                  .set(seat)
-//                  .addOnSuccessListener(aVoid -> {
-//                      Log.d("SeatBookingActivity", "Ghế " + seatCode + " tạo thành công.");
-//                  })
-//                  .addOnFailureListener(e -> {
-//                      Log.e("SeatBookingActivity", "Lỗi khi tạo ghế " + seatCode + ": " + e.getMessage());
-//                  });
-//            }
-//        }
-//        Log.d("SeatBookingActivity", "Hoàn tất yêu cầu tạo ghế mẫu.");
-//    }
+    private void createSampleSeatsForShowtime(String showtimeId) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String[] rowLabels = {"I", "H", "G", "F", "E", "D", "C", "B", "A"};
+        int numRows = rowLabels.length; // Tổng số hàng
+        int numCols = 8; // Tổng số cột
+
+        Log.d("SeatBookingActivity", "Bắt đầu tạo dữ liệu ghế mẫu cho suất chiếu: " + showtimeId);
+
+        for (int r = 0; r < numRows; r++) {
+            String row = rowLabels[r];
+            for (int col = 1; col <= numCols; col++) {
+                String seatCode = row + col;
+                Map<String, Object> seat = new HashMap<>();
+                seat.put("code", seatCode);
+                seat.put("type", "normal"); // Mặc định là normal, bạn có thể tùy chỉnh
+                seat.put("price", 95000);    // Mặc định giá 95,000đ, bạn có thể tùy chỉnh
+                seat.put("status", "available"); // Ban đầu tất cả đều available
+                seat.put("userId", ""); // Ban đầu chưa có user nào mua
+
+                // Ghi dữ liệu ghế lên Firebase
+                db.collection("showtimes")
+                  .document(showtimeId)
+                  .collection("seats")
+                  .document(seatCode)
+                  .set(seat)
+                  .addOnSuccessListener(aVoid -> {
+                      Log.d("SeatBookingActivity", "Ghế " + seatCode + " tạo thành công.");
+                  })
+                  .addOnFailureListener(e -> {
+                      Log.e("SeatBookingActivity", "Lỗi khi tạo ghế " + seatCode + ": " + e.getMessage());
+                  });
+            }
+        }
+        Log.d("SeatBookingActivity", "Hoàn tất yêu cầu tạo ghế mẫu.");
+    }
 }

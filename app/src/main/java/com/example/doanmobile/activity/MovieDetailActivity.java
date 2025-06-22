@@ -43,6 +43,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     private ChipGroup chipGroupTimes;
     private Button btnDatVe;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private String moviePosterUrl;
     private String movieId;
     private String selectedDate;
     private String selectedCinemaId;
@@ -86,12 +87,14 @@ public class MovieDetailActivity extends AppCompatActivity {
                 Toast.makeText(this, "Vui lòng chọn ngày, rạp và giờ chiếu!", Toast.LENGTH_SHORT).show();
                 return;
             }
-            // Chuyển qua màn chọn ghế (tuỳ bạn xử lý)
+
             Intent intent = new Intent(this, SeatBookingActivity.class);
             intent.putExtra("movieId", movieId);
             intent.putExtra("cinemaId", selectedCinemaId);
             intent.putExtra("date", selectedDate);
             intent.putExtra("time", selectedTime);
+            Log.d("MovieDetailActivity", "URL being passed to SeatBookingActivity: " + moviePosterUrl);
+            intent.putExtra("posterUrl",moviePosterUrl);
             startActivity(intent);
         });
 
@@ -314,6 +317,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                     Glide.with(this)
                             .load(doc.getString("imgBanner"))   // ảnh ngang
                             .into(imgBanner);
+                    this.moviePosterUrl = doc.getString("imgBanner");
 
                     tvTitle.setText(doc.getString("name"));
                     tvAge.setText(doc.getString("age"));     // ví dụ: T16

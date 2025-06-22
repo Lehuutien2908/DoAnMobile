@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#FFF"
+    android:padding="16dp">
+
+    <!-- Avatar -->
+    <LinearLayout
+        android:id="@+id/layoutLoggedInInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tab_border"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="24dp">
+
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="85dp"
+            android:layout_height="79dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User name"
+                android:textColor="#222"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Tabs -->
+    <LinearLayout
+        android:id="@+id/layoutLoggedInTabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/infoUser"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_tab_border"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="Thông tin"
+            android:textColor="#1976D2"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtMyTicket"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_tab_border"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="Vé của tôi"
+            android:textColor="#1976D2"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <!-- Thông tin thêm -->
+    <TextView
+        android:id="@+id/tvHotline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tab_border"
+        android:padding="10dp"
+        android:layout_marginTop="12dp"
+        android:text="Gọi ĐƯỜNG DÂY NÓNG: 19002224"
+        android:textColor="#1976D2" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tab_border"
+        android:padding="10dp"
+        android:text="Email: hotro@galaxystudio.vn"
+        android:textColor="#1976D2" />
+
+    <TextView
+        android:id="@+id/tvCompanyInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tab_border"
+        android:padding="10dp"
+        android:text="Thông Tin Công Ty" />
+
+    <TextView
+        android:id="@+id/tvTermsOfUse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tab_border"
+        android:padding="10dp"
+        android:text="Điều khoản sử dụng" />
+
+    <TextView
+        android:id="@+id/tvPaymentPolicy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tab_border"
+        android:padding="10dp"
+        android:text="Chính sách thanh toán" />
+
+    <TextView
+        android:id="@+id/tvPrivacyPolicy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tab_border"
+        android:padding="10dp"
+        android:text="Chính sách bảo mật" />
+
+    <TextView
+        android:id="@+id/tvFAQ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tab_border"
+        android:padding="10dp"
+        android:text="Câu hỏi thường gặp" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:backgroundTint="#D32F2F"
+        android:text="Đăng xuất"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+</LinearLayout> 

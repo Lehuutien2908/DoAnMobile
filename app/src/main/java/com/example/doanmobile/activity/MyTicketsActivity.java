@@ -3,6 +3,7 @@ package com.example.doanmobile.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.doanmobile.R;
 import com.example.doanmobile.adapter.TicketAdapter;
 import com.example.doanmobile.model.TicketModel;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.*;
 
@@ -26,6 +28,7 @@ public class MyTicketsActivity extends AppCompatActivity {
     private List<TicketModel> ticketList;
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
+    private ImageButton btnBack;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class MyTicketsActivity extends AppCompatActivity {
         recyclerTickets.setLayoutManager(new LinearLayoutManager(this));
         ticketList = new ArrayList<>();
         adapter = new TicketAdapter(ticketList, ticket -> {
+            Log.d("TICKET_CLICKED", "Clicked ticket: " + ticket.getTicketId());
             Intent intent = new Intent(MyTicketsActivity.this, TicketDetailActivity.class);
             intent.putExtra("ticket", ticket);
             startActivity(intent);
@@ -45,6 +49,10 @@ public class MyTicketsActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
+        btnBack =findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            finish();
+        });
         loadUserTickets();
     }
 
@@ -71,7 +79,12 @@ public class MyTicketsActivity extends AppCompatActivity {
                         for (DocumentSnapshot doc : value.getDocuments()) {
                             TicketModel ticket = doc.toObject(TicketModel.class);
                             if (ticket != null) {
-                                ticket.setTicketId(doc.getId()); // Gán ID Firestore
+                                ticket.setTicketId(doc.getId());
+
+                                // Sửa lỗi Timestamp không Serializable → chuyển sang Date
+                                Timestamp ts = doc.getTimestamp("createdAt");
+                                ticket.setCreatedAt(ts != null ? ts.toDate() : null);
+
                                 ticketList.add(ticket);
                             }
                         }

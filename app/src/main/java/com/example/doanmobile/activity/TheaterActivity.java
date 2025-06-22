@@ -62,23 +62,23 @@ public class TheaterActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_home) {
-                // Chuyển về MainActivity
+
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 overridePendingTransition(0, 0);
-                finish();
                 return true;
 
             } else if (itemId == R.id.nav_movie) {
                 // Chuyển sang MovieListActivity
                 startActivity(new Intent(getApplicationContext(), MovieListActivity.class));
                 overridePendingTransition(0, 0);
-                finish();
                 return true;
             } else if (itemId == R.id.nav_theater) {
                 // Đang ở đây rồi, không làm gì cả
                 return true;
             } else if (itemId == R.id.nav_account) {
-
+                startActivity(new Intent(this, AccountActivity.class));
+                overridePendingTransition(0,0);
+                finish();
                 return true;
             }
             return false;
