@@ -13,6 +13,8 @@
         android:theme="@style/Theme.DoAnMobile"
         tools:targetApi="31">
 
+
+
         <!-- Màn hình xác nhận đặt vé -->
         <activity android:name=".activity.BookingConfirmActivity" />
 
