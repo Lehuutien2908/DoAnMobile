@@ -33,7 +33,8 @@
         android:layout_height="150dp"
         android:src="@drawable/item_movie_bklr"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="46dp" />
+        tools:layout_editor_absoluteY="46dp"
+        tools:ignore="MissingConstraints" />
 
     <!-- Thông tin phim -->
     <LinearLayout
